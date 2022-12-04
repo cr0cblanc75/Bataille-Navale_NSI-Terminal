@@ -2,7 +2,7 @@
 
 ### Projet Solo 
 
---
+____________________
 
 Lancer le fichier du nom `Bataille Navale`
 
