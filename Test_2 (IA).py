@@ -1742,7 +1742,7 @@ def credis():
     dessin3.pack(fill ="both")
     dessin3.create_image(0, 0, image = new_image , anchor ="nw")
     dessin3.create_text(600, 100, font=('Centaur', 50, "bold"), text='⦇ ៙ ~ Crédits ~ ៙ ⦈', fill ="blue")
-    dessin3.create_text(600, 350, font=('Arial', 20, "bold"), text='Projet de : Eugène Lallain et Daniel Biros', fill ="black")
+    dessin3.create_text(600, 350, font=('Arial', 20, "bold"), text='Projet de : Eugène', fill ="black")
     dessin3.create_text(600, 380, font=('Arial', 20, "bold"), text='Classe    : Spé.NSI - Terminale', fill ="black")
     Button(fen3, text='Retour', command = menu).place(x = 560, y = 550)
     Button(fen3, text='Quitter', command = fen3.destroy).place(x = 560, y = 600)
