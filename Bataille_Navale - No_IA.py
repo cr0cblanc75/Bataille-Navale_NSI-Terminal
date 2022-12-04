@@ -1698,8 +1698,4 @@ menu()      #| Exécution de la fenêtre menu qui est la première fenêtre du j
                 #Temps passé sur le code en heures : 68
 
 
-                                ##----- Daniel -----##
-
-            #Temps passé sur le code en nombre de coucou d'horloge : 31
-
 #{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ( - ° - ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}~#
