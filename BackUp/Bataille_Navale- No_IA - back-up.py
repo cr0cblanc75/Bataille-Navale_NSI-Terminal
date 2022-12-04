@@ -1685,14 +1685,3 @@ def regle():
 menu()
 
 
-         ##----- Eugène -----##
-
-#Temps passé sur le code en 45-Tours ( 4 min ) : 1022 
-#Temps passé sur le code en heures : 68
-
-
-         ##----- Daniel -----##
-
-#Temps passé sur le code en nombre de coucou d'horloge : 31
-
-
