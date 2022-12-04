@@ -1666,12 +1666,5 @@ def regle():
 menu()
 
 
-#Temps passé sur le code en 45-Tours ( 4 min ) : 1022 
-#Temps passé sur le code en heures : 68
-
-
-
-
-
 
 
