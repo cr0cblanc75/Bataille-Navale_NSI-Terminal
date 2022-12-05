@@ -10,3 +10,6 @@ Lancer le fichier du nom `Bataille Navale`
 
 
 ##### Avoir au préalable la bibliothèque `PIL` et `TKinter` ( avec .ttk )
+
+
+``` Objectif : Trophée de NSI ```
