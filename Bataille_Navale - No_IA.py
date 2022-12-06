@@ -430,7 +430,7 @@ def main():
     #print("--------------")
     #print(choose_rota)
     #print(choose_bateau_ordi1, choose_bateau_ordi2)
-    print(trash_boucle_debug)                       #| On imprime la boucle de debug qui montre combien de fois l'ordi à du replacer un bateau parce qu'il en superposait un autre
+    #print(trash_boucle_debug)                       #| On imprime la boucle de debug qui montre combien de fois l'ordi à du replacer un bateau parce qu'il en superposait un autre
     print(case_ordi[0])                             #| On imprime toutes les lignes de la grille ordi pour connaitre la position des bateaux ennemis ( on triche pour la faire plus court )
     print(case_ordi[1])
     print(case_ordi[2])
@@ -1046,200 +1046,229 @@ def main():
                     messagebox.showerror("Erreur !","Vous avez déjà placé ce Bateau.")
                     pass
             
-            def build_PorteAvion(self):
-                global count_pa
+           
+            
+        class PorteAvion:
+            """
+            Le Shape du Porte-Avion
+            """
+            def __init__(self):
+                global rota
+                global pos
+                global case_joueur
+                global count_sm
                 global start_game
-                
-                if count_pa == 1:
-                    #print("Taille de rota:  ", len(rota))
-                    if len(rota) == 1:
-                        if pos[3] == 0 or pos[2] >= 5:
-                            messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
-                            pass
-                        else:
-                            check_pos = True
-                            if case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "F" or case_joueur[pos[3]][pos[2]+2] == "S" or case_joueur[pos[3]][pos[2]+2] == "T" or case_joueur[pos[3]][pos[2]+2] == "F" or case_joueur[pos[3]][pos[2]+3] == "S" or case_joueur[pos[3]][pos[2]+3] == "T" or case_joueur[pos[3]][pos[2]+3] == "F" or case_joueur[pos[3]-1][pos[2]] == "S" or case_joueur[pos[3]-1][pos[2]] == "T" or case_joueur[pos[3]-1][pos[2]] == "F" or case_joueur[pos[3]-1][pos[2]+1] == "S" or case_joueur[pos[3]-1][pos[2]+1] == "T" or case_joueur[pos[3]-1][pos[2]+1] == "F" or case_joueur[pos[3]-1][pos[2]+2] == "S" or case_joueur[pos[3]-1][pos[2]+2] == "T" or case_joueur[pos[3]-1][pos[2]+2] == "F" or case_joueur[pos[3]-1][pos[2]+3] == "S" or case_joueur[pos[3]-1][pos[2]+3] == "T" or case_joueur[pos[3]-1][pos[2]+3] == "F":
-                                messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
-                                check_pos  = False
-        
-                            if check_pos == False:
-                                pass
-                            else:
-                                dessin.create_line(pos[4]-5,  pos[5]-40,  pos[4]+80,  pos[5]-40, fill='#0000FF')
-                                dessin.create_line(pos[4]-10, pos[5]+10,  pos[4]+40,  pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]+83, pos[5]+10,  pos[4]+100, pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]+100,pos[5]+10,  pos[4]+100, pos[5]-9,  fill='#0000FF')
-                                dessin.create_line(pos[4]+100,pos[5]-9,   pos[4]+85,  pos[5]-9,  fill='#0000FF')
-                                dessin.create_line(pos[4]+80, pos[5]-40,  pos[4]+85,  pos[5]-9,  fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]-40,  pos[4]-10,  pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]+25, pos[5]-35,  pos[4]+65,  pos[5]-35, fill='#0000FF')
-                                dessin.create_line(pos[4]+25, pos[5]-20,  pos[4]+65,  pos[5]-20, fill='#0000FF')
-                                dessin.create_line(pos[4]+25, pos[5]-35,  pos[4]+25,  pos[5]-20, fill='#0000FF')
-                                dessin.create_line(pos[4]+65, pos[5]-35,  pos[4]+65,  pos[5]-20, fill='#0000FF')
-                                dessin.create_line(pos[4],    pos[5]-10,  pos[4]+85,  pos[5],    fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]+5,   pos[4]+80,  pos[5]+15, fill='#0000FF')
-                                dessin.create_line(pos[4],    pos[5]-15,  pos[4]-5,   pos[5]+5,  fill='#0000FF')
-                                dessin.create_line(pos[4]+85, pos[5],     pos[4]+80,  pos[5]+15, fill='#0000FF')
-                                dessin.create_line(pos[4]+35, pos[5]-28,  pos[4]+40,  pos[5]-28, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]+45, pos[5]-28,  pos[4]+50,  pos[5]-28, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]+20, pos[5]-28,  pos[4]+15,  pos[5]-28, width = 3, fill='#0000FF')
-                                             
-                                case_joueur[pos[3]][pos[2]] = "P"
-                                case_joueur[pos[3]][pos[2]+1] = "P"
-                                case_joueur[pos[3]][pos[2]+2] = "P"
-                                case_joueur[pos[3]][pos[2]+3] = "P"
-                                case_joueur[pos[3]-1][pos[2]] = "P"
-                                case_joueur[pos[3]-1][pos[2]+1] = "P"
-                                case_joueur[pos[3]-1][pos[2]+2] = "P"
-                                case_joueur[pos[3]-1][pos[2]+3] = "P"
-                                count_pa = 0
-                                start_game = start_game-1
-                                bouton_pa_num['text'] = "0"
-                                #print(case_joueur)
-                            
-                            
-                            
-      
-                    if len(rota) == 2:
-                        if pos[2] == 7 or pos[3] >= 5:
-                            messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
-                            pass
-                        else:
-                            check_pos = True
-                            if case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "F" or case_joueur[pos[3]+1][pos[2]+1] == "S" or case_joueur[pos[3]+1][pos[2]+1] == "T" or case_joueur[pos[3]+1][pos[2]+1] == "F" or case_joueur[pos[3]+2][pos[2]+1] == "S" or case_joueur[pos[3]+2][pos[2]+1] == "T" or case_joueur[pos[3]+2][pos[2]+1] == "F" or case_joueur[pos[3]+3][pos[2]+1] == "S" or case_joueur[pos[3]+3][pos[2]+1] == "T" or case_joueur[pos[3]+3][pos[2]+1] == "F" or case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]+1][pos[2]] == "S" or case_joueur[pos[3]+1][pos[2]] == "T" or case_joueur[pos[3]+1][pos[2]] == "F" or case_joueur[pos[3]+2][pos[2]] == "S" or case_joueur[pos[3]+2][pos[2]] == "T" or case_joueur[pos[3]+2][pos[2]] == "F" or case_joueur[pos[3]+3][pos[2]] == "S" or case_joueur[pos[3]+3][pos[2]] == "T" or case_joueur[pos[3]+3][pos[2]] == "F":
-                                messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
-                                check_pos  = False
-                            
-                            
-                            if check_pos == False:
-                                pass
-                            else:
-                                dessin.create_line(pos[4]-10, pos[5]-5,   pos[4]-10,  pos[5]+80, fill='#0000FF')
-                                dessin.create_line(pos[4]+40, pos[5]-10,  pos[4]+40,  pos[5]+40, fill='#0000FF')
-                                dessin.create_line(pos[4]+40, pos[5]+83,  pos[4]+40,  pos[5]+100, fill='#0000FF')
-                                dessin.create_line(pos[4]+40, pos[5]+100, pos[4]+21,  pos[5]+100,  fill='#0000FF')
-                                dessin.create_line(pos[4]+21, pos[5]+100, pos[4]+21,  pos[5]+85,  fill='#0000FF')
-                                dessin.create_line(pos[4]-10, pos[5]+80,  pos[4]+21,  pos[5]+85,  fill='#0000FF')
-                                dessin.create_line(pos[4]-10, pos[5]-5,   pos[4]+40,  pos[5]-10, fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]+25,  pos[4]-5,   pos[5]+65, fill='#0000FF')
-                                dessin.create_line(pos[4]+10, pos[5]+25,  pos[4]+10,  pos[5]+65, fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]+25,  pos[4]+10,  pos[5]+25, fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]+65,  pos[4]+10,  pos[5]+65, fill='#0000FF')
-                                dessin.create_line(pos[4]+20, pos[5],     pos[4]+30,  pos[5]+85,    fill='#0000FF')
-                                dessin.create_line(pos[4]+35, pos[5]-5,   pos[4]+45,  pos[5]+80, fill='#0000FF')
-                                dessin.create_line(pos[4]+15, pos[5],     pos[4]+35,  pos[5]-5,  fill='#0000FF')
-                                dessin.create_line(pos[4]+30, pos[5]+85,  pos[4]+45,  pos[5]+80, fill='#0000FF')
-                                dessin.create_line(pos[4]+2,  pos[5]+35,  pos[4]+2,   pos[5]+40, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]+2,  pos[5]+45,  pos[4]+2,   pos[5]+50, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]+2,  pos[5]+20,  pos[4]+2,   pos[5]+15, width = 3, fill='#0000FF')
-                                
-                                case_joueur[pos[3]][pos[2]+1] = "P"
-                                case_joueur[pos[3]+1][pos[2]+1] = "P"
-                                case_joueur[pos[3]+2][pos[2]+1] = "P"
-                                case_joueur[pos[3]+3][pos[2]+1] = "P"
-                                case_joueur[pos[3]][pos[2]] = "P"
-                                case_joueur[pos[3]+1][pos[2]] = "P"
-                                case_joueur[pos[3]+2][pos[2]] = "P"
-                                case_joueur[pos[3]+3][pos[2]] = "P"
-                                count_pa = 0
-                                start_game = start_game-1
-                                bouton_pa_num['text'] = "0"
-                                #print(case_joueur)
-                            
-                    if len(rota) == 3:
-                        if pos[2] <= 2 or pos[3] == 0:
-                            messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
-                            pass
-                        else:
-                            check_pos = True
-                            if case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]][pos[2]-1] == "S" or case_joueur[pos[3]][pos[2]-1] == "T" or case_joueur[pos[3]][pos[2]-1] == "F" or case_joueur[pos[3]][pos[2]-2] == "S" or case_joueur[pos[3]][pos[2]-2] == "T" or case_joueur[pos[3]][pos[2]-2] == "F" or case_joueur[pos[3]][pos[2]-3] == "S" or case_joueur[pos[3]][pos[2]-3] == "T" or case_joueur[pos[3]][pos[2]-3] == "F" or case_joueur[pos[3]-1][pos[2]] == "S" or case_joueur[pos[3]-1][pos[2]] == "T" or case_joueur[pos[3]-1][pos[2]] == "F" or case_joueur[pos[3]-1][pos[2]-1] == "S" or case_joueur[pos[3]-1][pos[2]-1] == "T" or case_joueur[pos[3]-1][pos[2]-1] == "F" or case_joueur[pos[3]-1][pos[2]-2] == "S" or case_joueur[pos[3]-1][pos[2]-2] == "T" or case_joueur[pos[3]-1][pos[2]-2] == "F" or case_joueur[pos[3]-1][pos[2]-3] == "S" or case_joueur[pos[3]-1][pos[2]-3] == "T" or case_joueur[pos[3]-1][pos[2]-3] == "F":
-                                messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
-                                check_pos  = False
-        
-                            if check_pos == False:
-                                pass
-                            else:
-                                dessin.create_line(pos[4]+5,  pos[5]-40,  pos[4]-80, pos[5]-40, fill='#0000FF')
-                                dessin.create_line(pos[4]+10, pos[5]+10,  pos[4]-40, pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]-73, pos[5]+10,  pos[4]-100,pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]-100,pos[5]+10,  pos[4]-100,pos[5]-9,  fill='#0000FF')
-                                dessin.create_line(pos[4]-100,pos[5]-9,   pos[4]-85, pos[5]-9,  fill='#0000FF')
-                                dessin.create_line(pos[4]-80, pos[5]-40,  pos[4]-85, pos[5]-9,  fill='#0000FF')
-                                dessin.create_line(pos[4]+5,  pos[5]-40,  pos[4]+10, pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]-15, pos[5]-35,  pos[4]-55, pos[5]-35, fill='#0000FF')
-                                dessin.create_line(pos[4]-15, pos[5]-20,  pos[4]-55, pos[5]-20, fill='#0000FF')
-                                dessin.create_line(pos[4]-15, pos[5]-35,  pos[4]-15, pos[5]-20, fill='#0000FF')
-                                dessin.create_line(pos[4]-55, pos[5]-35,  pos[4]-55, pos[5]-20, fill='#0000FF')
-                                dessin.create_line(pos[4],    pos[5]-10,  pos[4]-75, pos[5],    fill='#0000FF')
-                                dessin.create_line(pos[4]+5,  pos[5]+5,   pos[4]-70, pos[5]+15, fill='#0000FF')
-                                dessin.create_line(pos[4],    pos[5]-10,  pos[4]+5,  pos[5]+5,  fill='#0000FF')
-                                dessin.create_line(pos[4]-75, pos[5],     pos[4]-70, pos[5]+15, fill='#0000FF')
-                                dessin.create_line(pos[4]-25, pos[5]-28,  pos[4]-30, pos[5]-28, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]-35, pos[5]-28,  pos[4]-40, pos[5]-28, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]-10, pos[5]-28,  pos[4]-5,  pos[5]-28, width = 3, fill='#0000FF')
-                                
-                                case_joueur[pos[3]][pos[2]] = "P"
-                                case_joueur[pos[3]][pos[2]-1] = "P"
-                                case_joueur[pos[3]][pos[2]-2] = "P"
-                                case_joueur[pos[3]][pos[2]-3] = "P"
-                                case_joueur[pos[3]-1][pos[2]] = "P"
-                                case_joueur[pos[3]-1][pos[2]-1] = "P"
-                                case_joueur[pos[3]-1][pos[2]-2] = "P"
-                                case_joueur[pos[3]-1][pos[2]-3] = "P"
-                                count_pa = 0
-                                start_game = start_game-1
-                                bouton_pa_num['text'] = "0"
-                                #print(case_joueur)
-                        
-                    if len(rota) == 4:
-                        if pos[2] == 7 or pos[3] <= 2:
-                            messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
-                            pass
-                        else:
-                            check_pos = True
-                            if case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]-1][pos[2]] == "S" or case_joueur[pos[3]-1][pos[2]] == "T" or case_joueur[pos[3]-1][pos[2]] == "F" or case_joueur[pos[3]-2][pos[2]] == "S" or case_joueur[pos[3]-2][pos[2]] == "T" or case_joueur[pos[3]-2][pos[2]] == "F" or case_joueur[pos[3]-3][pos[2]] == "S" or case_joueur[pos[3]-3][pos[2]] == "T" or case_joueur[pos[3]-3][pos[2]] == "F" or case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "F" or case_joueur[pos[3]-1][pos[2]+1] == "S" or case_joueur[pos[3]-1][pos[2]+1] == "T" or case_joueur[pos[3]-1][pos[2]+1] == "F" or case_joueur[pos[3]-2][pos[2]+1] == "S" or case_joueur[pos[3]-2][pos[2]+1] == "T" or case_joueur[pos[3]-2][pos[2]+1] == "F" or case_joueur[pos[3]-3][pos[2]+1] == "S" or case_joueur[pos[3]-3][pos[2]+1] == "T" or case_joueur[pos[3]-3][pos[2]+1] == "F":
-                                messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
-                                check_pos  = False
-        
-                            if check_pos == False:
-                                pass
-                            else:
-                                dessin.create_line(pos[4]-10, pos[5]+5,   pos[4]-10,  pos[5]-80, fill='#0000FF')
-                                dessin.create_line(pos[4]+40, pos[5]+10,  pos[4]+40,  pos[5]-30, fill='#0000FF')
-                                dessin.create_line(pos[4]+40, pos[5]-83,  pos[4]+40,  pos[5]-100,fill='#0000FF')
-                                dessin.create_line(pos[4]+40, pos[5]-100, pos[4]+21,  pos[5]-100,fill='#0000FF')
-                                dessin.create_line(pos[4]+21, pos[5]-100, pos[4]+21,  pos[5]-85, fill='#0000FF')
-                                dessin.create_line(pos[4]-10, pos[5]-80,  pos[4]+21,  pos[5]-85, fill='#0000FF')
-                                dessin.create_line(pos[4]-10, pos[5]+5,   pos[4]+40,  pos[5]+10, fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]-25,  pos[4]-5,   pos[5]-65, fill='#0000FF')
-                                dessin.create_line(pos[4]+10, pos[5]-25,  pos[4]+10,  pos[5]-65, fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]-25,  pos[4]+10,  pos[5]-25, fill='#0000FF')
-                                dessin.create_line(pos[4]-5,  pos[5]-65,  pos[4]+10,  pos[5]-65, fill='#0000FF')
-                                dessin.create_line(pos[4]+20, pos[5],     pos[4]+30,  pos[5]-85, fill='#0000FF')
-                                dessin.create_line(pos[4]+35, pos[5]+5,   pos[4]+45,  pos[5]-80, fill='#0000FF')
-                                dessin.create_line(pos[4]+20, pos[5],     pos[4]+35,  pos[5]+5,  fill='#0000FF')
-                                dessin.create_line(pos[4]+30, pos[5]-85,  pos[4]+45,  pos[5]-80, fill='#0000FF')
-                                dessin.create_line(pos[4]+2,  pos[5]-35,  pos[4]+2,   pos[5]-40, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]+2,  pos[5]-45,  pos[4]+2,   pos[5]-50, width = 5, fill='#0000FF')
-                                dessin.create_line(pos[4]+2,  pos[5]-20,  pos[4]+2,   pos[5]-15, width = 3, fill='#0000FF')
-                                
-                                case_joueur[pos[3]][pos[2]] = "P"
-                                case_joueur[pos[3]-1][pos[2]] = "P"
-                                case_joueur[pos[3]-2][pos[2]] = "P"
-                                case_joueur[pos[3]-3][pos[2]] = "P"
-                                case_joueur[pos[3]][pos[2]+1] = "P"
-                                case_joueur[pos[3]-1][pos[2]+1] = "P"
-                                case_joueur[pos[3]-2][pos[2]+1] = "P"
-                                case_joueur[pos[3]-3][pos[2]+1] = "P"
-                                count_pa = 0
-                                start_game = start_game-1
-                                bouton_pa_num['text'] = "0"
-                                #print(case_joueur)
-                            
-                            
-                else:
-                    messagebox.showerror("Erreur !","Vous avez déjà placé ce Bateau.")
-                    pass
+                global check_pos
+            
+            def build_PorteAvion(self):
+                 global count_pa
+                 global start_game
+                 
+                 if count_pa == 1:
+                     #print("Taille de rota:  ", len(rota))
+                     if len(rota) == 1:
+                         if pos[3] == 0 or pos[2] >= 5:
+                             messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
+                             pass
+                         else:
+                             check_pos = True
+                             if case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "F" or case_joueur[pos[3]][pos[2]+2] == "S" or case_joueur[pos[3]][pos[2]+2] == "T" or case_joueur[pos[3]][pos[2]+2] == "F" or case_joueur[pos[3]][pos[2]+3] == "S" or case_joueur[pos[3]][pos[2]+3] == "T" or case_joueur[pos[3]][pos[2]+3] == "F" or case_joueur[pos[3]-1][pos[2]] == "S" or case_joueur[pos[3]-1][pos[2]] == "T" or case_joueur[pos[3]-1][pos[2]] == "F" or case_joueur[pos[3]-1][pos[2]+1] == "S" or case_joueur[pos[3]-1][pos[2]+1] == "T" or case_joueur[pos[3]-1][pos[2]+1] == "F" or case_joueur[pos[3]-1][pos[2]+2] == "S" or case_joueur[pos[3]-1][pos[2]+2] == "T" or case_joueur[pos[3]-1][pos[2]+2] == "F" or case_joueur[pos[3]-1][pos[2]+3] == "S" or case_joueur[pos[3]-1][pos[2]+3] == "T" or case_joueur[pos[3]-1][pos[2]+3] == "F":
+                                 messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
+                                 check_pos  = False
+         
+                             if check_pos == False:
+                                 pass
+                             else:
+                                 dessin.create_line(pos[4]-5,  pos[5]-40,  pos[4]+80,  pos[5]-40, fill='#0000FF')
+                                 dessin.create_line(pos[4]-10, pos[5]+10,  pos[4]+40,  pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]+83, pos[5]+10,  pos[4]+100, pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]+100,pos[5]+10,  pos[4]+100, pos[5]-9,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+100,pos[5]-9,   pos[4]+85,  pos[5]-9,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+80, pos[5]-40,  pos[4]+85,  pos[5]-9,  fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]-40,  pos[4]-10,  pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]+25, pos[5]-35,  pos[4]+65,  pos[5]-35, fill='#0000FF')
+                                 dessin.create_line(pos[4]+25, pos[5]-20,  pos[4]+65,  pos[5]-20, fill='#0000FF')
+                                 dessin.create_line(pos[4]+25, pos[5]-35,  pos[4]+25,  pos[5]-20, fill='#0000FF')
+                                 dessin.create_line(pos[4]+65, pos[5]-35,  pos[4]+65,  pos[5]-20, fill='#0000FF')
+                                 dessin.create_line(pos[4],    pos[5]-10,  pos[4]+85,  pos[5],    fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]+5,   pos[4]+80,  pos[5]+15, fill='#0000FF')
+                                 dessin.create_line(pos[4],    pos[5]-15,  pos[4]-5,   pos[5]+5,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+85, pos[5],     pos[4]+80,  pos[5]+15, fill='#0000FF')
+                                 dessin.create_line(pos[4]+35, pos[5]-28,  pos[4]+40,  pos[5]-28, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]+45, pos[5]-28,  pos[4]+50,  pos[5]-28, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]+20, pos[5]-28,  pos[4]+15,  pos[5]-28, width = 3, fill='#0000FF')
+                                              
+                                 case_joueur[pos[3]][pos[2]] = "P"
+                                 case_joueur[pos[3]][pos[2]+1] = "P"
+                                 case_joueur[pos[3]][pos[2]+2] = "P"
+                                 case_joueur[pos[3]][pos[2]+3] = "P"
+                                 case_joueur[pos[3]-1][pos[2]] = "P"
+                                 case_joueur[pos[3]-1][pos[2]+1] = "P"
+                                 case_joueur[pos[3]-1][pos[2]+2] = "P"
+                                 case_joueur[pos[3]-1][pos[2]+3] = "P"
+                                 count_pa = 0
+                                 start_game = start_game-1
+                                 bouton_pa_num['text'] = "0"
+                                 #print(case_joueur)
+                             
+                             
+                             
+       
+                     if len(rota) == 2:
+                         if pos[2] == 7 or pos[3] >= 5:
+                             messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
+                             pass
+                         else:
+                             check_pos = True
+                             if case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "F" or case_joueur[pos[3]+1][pos[2]+1] == "S" or case_joueur[pos[3]+1][pos[2]+1] == "T" or case_joueur[pos[3]+1][pos[2]+1] == "F" or case_joueur[pos[3]+2][pos[2]+1] == "S" or case_joueur[pos[3]+2][pos[2]+1] == "T" or case_joueur[pos[3]+2][pos[2]+1] == "F" or case_joueur[pos[3]+3][pos[2]+1] == "S" or case_joueur[pos[3]+3][pos[2]+1] == "T" or case_joueur[pos[3]+3][pos[2]+1] == "F" or case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]+1][pos[2]] == "S" or case_joueur[pos[3]+1][pos[2]] == "T" or case_joueur[pos[3]+1][pos[2]] == "F" or case_joueur[pos[3]+2][pos[2]] == "S" or case_joueur[pos[3]+2][pos[2]] == "T" or case_joueur[pos[3]+2][pos[2]] == "F" or case_joueur[pos[3]+3][pos[2]] == "S" or case_joueur[pos[3]+3][pos[2]] == "T" or case_joueur[pos[3]+3][pos[2]] == "F":
+                                 messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
+                                 check_pos  = False
+                             
+                             
+                             if check_pos == False:
+                                 pass
+                             else:
+                                 dessin.create_line(pos[4]-10, pos[5]-5,   pos[4]-10,  pos[5]+80, fill='#0000FF')
+                                 dessin.create_line(pos[4]+40, pos[5]-10,  pos[4]+40,  pos[5]+40, fill='#0000FF')
+                                 dessin.create_line(pos[4]+40, pos[5]+83,  pos[4]+40,  pos[5]+100, fill='#0000FF')
+                                 dessin.create_line(pos[4]+40, pos[5]+100, pos[4]+21,  pos[5]+100,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+21, pos[5]+100, pos[4]+21,  pos[5]+85,  fill='#0000FF')
+                                 dessin.create_line(pos[4]-10, pos[5]+80,  pos[4]+21,  pos[5]+85,  fill='#0000FF')
+                                 dessin.create_line(pos[4]-10, pos[5]-5,   pos[4]+40,  pos[5]-10, fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]+25,  pos[4]-5,   pos[5]+65, fill='#0000FF')
+                                 dessin.create_line(pos[4]+10, pos[5]+25,  pos[4]+10,  pos[5]+65, fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]+25,  pos[4]+10,  pos[5]+25, fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]+65,  pos[4]+10,  pos[5]+65, fill='#0000FF')
+                                 dessin.create_line(pos[4]+20, pos[5],     pos[4]+30,  pos[5]+85,    fill='#0000FF')
+                                 dessin.create_line(pos[4]+35, pos[5]-5,   pos[4]+45,  pos[5]+80, fill='#0000FF')
+                                 dessin.create_line(pos[4]+15, pos[5],     pos[4]+35,  pos[5]-5,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+30, pos[5]+85,  pos[4]+45,  pos[5]+80, fill='#0000FF')
+                                 dessin.create_line(pos[4]+2,  pos[5]+35,  pos[4]+2,   pos[5]+40, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]+2,  pos[5]+45,  pos[4]+2,   pos[5]+50, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]+2,  pos[5]+20,  pos[4]+2,   pos[5]+15, width = 3, fill='#0000FF')
+                                 
+                                 case_joueur[pos[3]][pos[2]+1] = "P"
+                                 case_joueur[pos[3]+1][pos[2]+1] = "P"
+                                 case_joueur[pos[3]+2][pos[2]+1] = "P"
+                                 case_joueur[pos[3]+3][pos[2]+1] = "P"
+                                 case_joueur[pos[3]][pos[2]] = "P"
+                                 case_joueur[pos[3]+1][pos[2]] = "P"
+                                 case_joueur[pos[3]+2][pos[2]] = "P"
+                                 case_joueur[pos[3]+3][pos[2]] = "P"
+                                 count_pa = 0
+                                 start_game = start_game-1
+                                 bouton_pa_num['text'] = "0"
+                                 #print(case_joueur)
+                             
+                     if len(rota) == 3:
+                         if pos[2] <= 2 or pos[3] == 0:
+                             messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
+                             pass
+                         else:
+                             check_pos = True
+                             if case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]][pos[2]-1] == "S" or case_joueur[pos[3]][pos[2]-1] == "T" or case_joueur[pos[3]][pos[2]-1] == "F" or case_joueur[pos[3]][pos[2]-2] == "S" or case_joueur[pos[3]][pos[2]-2] == "T" or case_joueur[pos[3]][pos[2]-2] == "F" or case_joueur[pos[3]][pos[2]-3] == "S" or case_joueur[pos[3]][pos[2]-3] == "T" or case_joueur[pos[3]][pos[2]-3] == "F" or case_joueur[pos[3]-1][pos[2]] == "S" or case_joueur[pos[3]-1][pos[2]] == "T" or case_joueur[pos[3]-1][pos[2]] == "F" or case_joueur[pos[3]-1][pos[2]-1] == "S" or case_joueur[pos[3]-1][pos[2]-1] == "T" or case_joueur[pos[3]-1][pos[2]-1] == "F" or case_joueur[pos[3]-1][pos[2]-2] == "S" or case_joueur[pos[3]-1][pos[2]-2] == "T" or case_joueur[pos[3]-1][pos[2]-2] == "F" or case_joueur[pos[3]-1][pos[2]-3] == "S" or case_joueur[pos[3]-1][pos[2]-3] == "T" or case_joueur[pos[3]-1][pos[2]-3] == "F":
+                                 messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
+                                 check_pos  = False
+         
+                             if check_pos == False:
+                                 pass
+                             else:
+                                 dessin.create_line(pos[4]+5,  pos[5]-40,  pos[4]-80, pos[5]-40, fill='#0000FF')
+                                 dessin.create_line(pos[4]+10, pos[5]+10,  pos[4]-40, pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]-73, pos[5]+10,  pos[4]-100,pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]-100,pos[5]+10,  pos[4]-100,pos[5]-9,  fill='#0000FF')
+                                 dessin.create_line(pos[4]-100,pos[5]-9,   pos[4]-85, pos[5]-9,  fill='#0000FF')
+                                 dessin.create_line(pos[4]-80, pos[5]-40,  pos[4]-85, pos[5]-9,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+5,  pos[5]-40,  pos[4]+10, pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]-15, pos[5]-35,  pos[4]-55, pos[5]-35, fill='#0000FF')
+                                 dessin.create_line(pos[4]-15, pos[5]-20,  pos[4]-55, pos[5]-20, fill='#0000FF')
+                                 dessin.create_line(pos[4]-15, pos[5]-35,  pos[4]-15, pos[5]-20, fill='#0000FF')
+                                 dessin.create_line(pos[4]-55, pos[5]-35,  pos[4]-55, pos[5]-20, fill='#0000FF')
+                                 dessin.create_line(pos[4],    pos[5]-10,  pos[4]-75, pos[5],    fill='#0000FF')
+                                 dessin.create_line(pos[4]+5,  pos[5]+5,   pos[4]-70, pos[5]+15, fill='#0000FF')
+                                 dessin.create_line(pos[4],    pos[5]-10,  pos[4]+5,  pos[5]+5,  fill='#0000FF')
+                                 dessin.create_line(pos[4]-75, pos[5],     pos[4]-70, pos[5]+15, fill='#0000FF')
+                                 dessin.create_line(pos[4]-25, pos[5]-28,  pos[4]-30, pos[5]-28, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]-35, pos[5]-28,  pos[4]-40, pos[5]-28, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]-10, pos[5]-28,  pos[4]-5,  pos[5]-28, width = 3, fill='#0000FF')
+                                 
+                                 case_joueur[pos[3]][pos[2]] = "P"
+                                 case_joueur[pos[3]][pos[2]-1] = "P"
+                                 case_joueur[pos[3]][pos[2]-2] = "P"
+                                 case_joueur[pos[3]][pos[2]-3] = "P"
+                                 case_joueur[pos[3]-1][pos[2]] = "P"
+                                 case_joueur[pos[3]-1][pos[2]-1] = "P"
+                                 case_joueur[pos[3]-1][pos[2]-2] = "P"
+                                 case_joueur[pos[3]-1][pos[2]-3] = "P"
+                                 count_pa = 0
+                                 start_game = start_game-1
+                                 bouton_pa_num['text'] = "0"
+                                 #print(case_joueur)
+                         
+                     if len(rota) == 4:
+                         if pos[2] == 7 or pos[3] <= 2:
+                             messagebox.showerror("Erreur !","Le Bateau sort de la grille, repositionnez le.")
+                             pass
+                         else:
+                             check_pos = True
+                             if case_joueur[pos[3]][pos[2]] == "S" or case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "F" or case_joueur[pos[3]-1][pos[2]] == "S" or case_joueur[pos[3]-1][pos[2]] == "T" or case_joueur[pos[3]-1][pos[2]] == "F" or case_joueur[pos[3]-2][pos[2]] == "S" or case_joueur[pos[3]-2][pos[2]] == "T" or case_joueur[pos[3]-2][pos[2]] == "F" or case_joueur[pos[3]-3][pos[2]] == "S" or case_joueur[pos[3]-3][pos[2]] == "T" or case_joueur[pos[3]-3][pos[2]] == "F" or case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "F" or case_joueur[pos[3]-1][pos[2]+1] == "S" or case_joueur[pos[3]-1][pos[2]+1] == "T" or case_joueur[pos[3]-1][pos[2]+1] == "F" or case_joueur[pos[3]-2][pos[2]+1] == "S" or case_joueur[pos[3]-2][pos[2]+1] == "T" or case_joueur[pos[3]-2][pos[2]+1] == "F" or case_joueur[pos[3]-3][pos[2]+1] == "S" or case_joueur[pos[3]-3][pos[2]+1] == "T" or case_joueur[pos[3]-3][pos[2]+1] == "F":
+                                 messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
+                                 check_pos  = False
+         
+                             if check_pos == False:
+                                 pass
+                             else:
+                                 dessin.create_line(pos[4]-10, pos[5]+5,   pos[4]-10,  pos[5]-80, fill='#0000FF')
+                                 dessin.create_line(pos[4]+40, pos[5]+10,  pos[4]+40,  pos[5]-30, fill='#0000FF')
+                                 dessin.create_line(pos[4]+40, pos[5]-83,  pos[4]+40,  pos[5]-100,fill='#0000FF')
+                                 dessin.create_line(pos[4]+40, pos[5]-100, pos[4]+21,  pos[5]-100,fill='#0000FF')
+                                 dessin.create_line(pos[4]+21, pos[5]-100, pos[4]+21,  pos[5]-85, fill='#0000FF')
+                                 dessin.create_line(pos[4]-10, pos[5]-80,  pos[4]+21,  pos[5]-85, fill='#0000FF')
+                                 dessin.create_line(pos[4]-10, pos[5]+5,   pos[4]+40,  pos[5]+10, fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]-25,  pos[4]-5,   pos[5]-65, fill='#0000FF')
+                                 dessin.create_line(pos[4]+10, pos[5]-25,  pos[4]+10,  pos[5]-65, fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]-25,  pos[4]+10,  pos[5]-25, fill='#0000FF')
+                                 dessin.create_line(pos[4]-5,  pos[5]-65,  pos[4]+10,  pos[5]-65, fill='#0000FF')
+                                 dessin.create_line(pos[4]+20, pos[5],     pos[4]+30,  pos[5]-85, fill='#0000FF')
+                                 dessin.create_line(pos[4]+35, pos[5]+5,   pos[4]+45,  pos[5]-80, fill='#0000FF')
+                                 dessin.create_line(pos[4]+20, pos[5],     pos[4]+35,  pos[5]+5,  fill='#0000FF')
+                                 dessin.create_line(pos[4]+30, pos[5]-85,  pos[4]+45,  pos[5]-80, fill='#0000FF')
+                                 dessin.create_line(pos[4]+2,  pos[5]-35,  pos[4]+2,   pos[5]-40, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]+2,  pos[5]-45,  pos[4]+2,   pos[5]-50, width = 5, fill='#0000FF')
+                                 dessin.create_line(pos[4]+2,  pos[5]-20,  pos[4]+2,   pos[5]-15, width = 3, fill='#0000FF')
+                                 
+                                 case_joueur[pos[3]][pos[2]] = "P"
+                                 case_joueur[pos[3]-1][pos[2]] = "P"
+                                 case_joueur[pos[3]-2][pos[2]] = "P"
+                                 case_joueur[pos[3]-3][pos[2]] = "P"
+                                 case_joueur[pos[3]][pos[2]+1] = "P"
+                                 case_joueur[pos[3]-1][pos[2]+1] = "P"
+                                 case_joueur[pos[3]-2][pos[2]+1] = "P"
+                                 case_joueur[pos[3]-3][pos[2]+1] = "P"
+                                 count_pa = 0
+                                 start_game = start_game-1
+                                 bouton_pa_num['text'] = "0"
+                                 #print(case_joueur)
+                             
+                             
+                 else:
+                     messagebox.showerror("Erreur !","Vous avez déjà placé ce Bateau.")
+                     pass
+              
+                      
+            
+        class Fregate:
+            """
+            Le Shape de la Frégate
+            """
+            def __init__(self):
+                global rota
+                global pos
+                global case_joueur
+                global count_sm
+                global start_game
+                global check_pos
+           
                 
             def build_Fregate(self):
                 global count_fg
@@ -1257,12 +1286,12 @@ def main():
                             if case_joueur[pos[3]][pos[2]-1] == "S" or case_joueur[pos[3]][pos[2]-1] == "T" or case_joueur[pos[3]][pos[2]-1] == "P" or case_joueur[pos[3]][pos[2]] == "S" or  case_joueur[pos[3]][pos[2]] == "T" or case_joueur[pos[3]][pos[2]] == "P" or case_joueur[pos[3]][pos[2]+1] == "S" or case_joueur[pos[3]][pos[2]+1] == "T" or case_joueur[pos[3]][pos[2]+1] == "P":
                                 messagebox.showerror("Erreur !","Le Bateau superpose un autre Bateau, repositionnez le.")
                                 check_pos = False
-                                print("enter")
+                                #print("enter")
                                 
-                            print(case_joueur[pos[3]][pos[2]-1])
-                            print(case_joueur[pos[3]][pos[2]])
-                            print(case_joueur[pos[3]][pos[2]+1])
-                            print(check_pos)
+                            #print(case_joueur[pos[3]][pos[2]-1])
+                            #print(case_joueur[pos[3]][pos[2]])
+                            #print(case_joueur[pos[3]][pos[2]+1])
+                            #print(check_pos)
 
                             if check_pos == True:
                                 dessin.create_arc((pos[4]-120, pos[5]-10),(pos[4]+40,  pos[5]+10), start=0, extent=90, style=ARC, outline ='#0000FF')
@@ -1376,6 +1405,20 @@ def main():
                 else:
                     messagebox.showerror("Erreur !","Vous avez déjà placé ce Bateau.")
                     pass
+            
+                      
+            
+        class Torpilleur:
+            """
+            Le Shape du Torpilleur
+            """
+            def __init__(self):
+                global rota
+                global pos
+                global case_joueur
+                global count_sm
+                global start_game
+                global check_pos
             
             def build_Torpilleur(self):
                 global count_tp
@@ -1513,7 +1556,13 @@ def main():
 
     ##----- Création des boutons -----##
     sm = Bateau(rota, pos, case_joueur, case_ordi, longeur_case_joueur, longeur_case_ordi).SousMarin()         #| Activiation des fonctions de construction
+    pa = Bateau(rota, pos, case_joueur, case_ordi, longeur_case_joueur, longeur_case_ordi).PorteAvion()    
+    tp = Bateau(rota, pos, case_joueur, case_ordi, longeur_case_joueur, longeur_case_ordi).Torpilleur()
+    fg = Bateau(rota, pos, case_joueur, case_ordi, longeur_case_joueur, longeur_case_ordi).Fregate()
 
+   
+
+    
     bouton_quitter = Button(fen, text='Quitter', command = fen.destroy)                                     #| Ecriture de tous les boutons
     bouton_quitter.grid(row = 1, column = 2, sticky = E+W , padx=3, pady=3)
     
@@ -1528,17 +1577,17 @@ def main():
     bouton_sm_num = Button(fen, text='1', state = DISABLED, width = 1)
     bouton_sm_num.place(x = 1080, y = 50)
     
-    bouton_pa = Button(fen, text='Porte-Avion', command = sm.build_PorteAvion)
+    bouton_pa = Button(fen, text='Porte-Avion', command = pa.build_PorteAvion)
     bouton_pa.place(x = 1100, y = 80)
     bouton_pa_num = Button(fen, text='1', state = DISABLED, width = 1)
     bouton_pa_num.place(x = 1080, y = 80)
     
-    bouton_tp = Button(fen, text='Torpilleur', command = sm.build_Torpilleur)
+    bouton_tp = Button(fen, text='Torpilleur', command = tp.build_Torpilleur)
     bouton_tp.place(x = 1100, y = 110)
     bouton_tp_num = Button(fen, text='1', state = DISABLED, width = 1)
     bouton_tp_num.place(x = 1080, y = 110)
     
-    bouton_fg = Button(fen, text='Frégate', command = sm.build_Fregate)
+    bouton_fg = Button(fen, text='Frégate', command = fg.build_Fregate)
     bouton_fg.place(x = 1100, y = 140)
     bouton_fg_num = Button(fen, text='1', state = DISABLED, width = 1)
     bouton_fg_num.place(x = 1080, y = 140)
