@@ -70,6 +70,7 @@ tir_ordi1 = randint(0,7)
 tir_ordi2 = randint(0,7)
 
 random_voisins_IA = randint(0, 3)
+voisin = []
 
 tir_ordi1_backup = tir_ordi1
 tir_ordi2_backup = tir_ordi2
@@ -113,6 +114,7 @@ def main():
     global check_tir_ordi_tp
     global check_IA
     global random_voisins_IA
+    global voisin
     global tir_ordi1
     global tir_ordi2
     global tir_ordi1_backup
@@ -169,6 +171,7 @@ def main():
     
     check_IA = False
     random_voisins_IA = randint(0, 3)
+    voisin = []
         
     check_tir_ordi = True
     
@@ -762,6 +765,7 @@ def main():
         global check_tir_ordi_tp
         global check_IA
         global random_voisins_IA
+        global voisin
         global tir_ordi1
         global tir_ordi2
         
@@ -810,131 +814,78 @@ def main():
                         break
                     else:
                         pass
-            
-            def check_tir_IA(check_pos1, check_pos2):
-                global check_tir_ordi
-                global log_tir_ordi
-                global tir_ordi1
-                global tir_ordi2
-                
-                for i in range(len(log_tir_ordi)):
-                    if ( log_tir_ordi[i][0] == check_pos1 ) and ( log_tir_ordi[i][1] == check_pos2 ):
-                        return True
-                        break
-                    else:
-                        return False
-            
-            
-            def check_tir_IA_list(list_pos):
-                global check_tir_ordi
-                global log_tir_ordi
- 
-                for i in range(len(log_tir_ordi)):
-                    if ( log_tir_ordi[i][0] == list_pos[0] ) and ( log_tir_ordi[i][1] == list_pos[1] ):
-                        return True
-                        break
-                    else:
-                        return False
-                    
                     
             if log_tir_ordi == []:
                 pass
             else:
                check_ante_tir_ordi()
             
-            tir_ordi1_backup = tir_ordi1
-            tir_ordi2_backup = tir_ordi2
-              
             
-            def voisins_IA(case : list):
-                global case_joueur
+            def voisins_IA():
                 global log_tir_ordi
                 
-                liste_voisins_IA = []
+                liste_voisins_IA = [[log_tir_ordi[-1][0] + 1, log_tir_ordi[-1][1]], [log_tir_ordi[-1][0], log_tir_ordi[-1][1] - 1], [log_tir_ordi[-1][0] - 1, log_tir_ordi[-1][1]], [log_tir_ordi[-1][0], log_tir_ordi[-1][1] + 1]]
                 
-                if case[0] == 0:
-                    if case[1] == 0:
-                        liste_voisins_IA = [[case[0] + 1, 0], [ ], [ ], [case[0], case[1] + 1]]
-                    if case[1] == 7:
-                        liste_voisins_IA = [[case[0] + 1, case[1]], [case[0], case[1] - 1], [ ], [ ]]
-                    else:
-                        liste_voisins_IA = [[case[0] + 1, case[1]], [case[0], case[1] - 1], [ ], [case[0], case[1] +1]]
-                else:
-                    liste_voisins_IA = [[case[0] +1, case[1]], [case[0], case[1] - 1], [case[0] - 1, case[1]], [case[0], case[1] + 1]]
-                
-                if case[0] == 7:
-                    if case[1] == 0:
-                        liste_voisins_IA = [[ ], [ ], [case[0] - 1, case[1]], [case[0], case[1] + 1]]
-                    if case[1] == 7:
-                        liste_voisins_IA = [[ ], [case[0], case[1] - 1], [case[0] - 1, case[1]], [ ]]
-                    else:
-                        liste_voisins_IA = [[ ], [case[0], case[1] - 1], [case[0] - 1, case[1]], [case[0], case[1] + 1]]
-              
+                for i in range(len(liste_voisins_IA)):
+                    if (liste_voisins_IA[i][0] < 0) or (liste_voisins_IA[i][1] < 0) or (liste_voisins_IA[i][0] > 7) or (liste_voisins_IA[i][1] > 7):
+                        liste_voisins_IA[i] = [ ]
                 return liste_voisins_IA
-                
-                    
-            if check_IA == True:
-                #print(log_tir_ordi[-1])
-                #print(voisins_IA(log_tir_ordi[-1]))
-                liste_IA = voisins_IA(log_tir_ordi[-1])
-                
-                def reload_tir_IA():
-                    global random_voisins_IA
-                    
-                    random_voisins_IA = randint(0,3)
             
-                def check_random_tir_IA():  #############  FONCTIONNE, boucle de verif de tir à revoir
+            #print("-----", voisins_IA())
+            
+            
+            
+            if check_IA == True:
+                liste_voisins_IA = voisins_IA()
+                #print(liste_voisins_IA)
+                
+                
+                def random_voisin_IA():
                     global random_voisins_IA
+                    
+                    random_voisins_IA = randint(0, 3)
+                    #print(random_voisins_IA)
+                
+                random_voisin_IA()
+                
+                def check_voisin_IA():
+                    global voisin
+                    
+                    if liste_voisins_IA[random_voisins_IA] == [ ]:
+                        random_voisin_IA()
+                        check_voisin_IA()
+                    else: 
+                        voisin = liste_voisins_IA[random_voisins_IA]
+                
+                check_voisin_IA()         
+                print(voisin)
+                
+                def check_voisin_tir_IA():
+                    global log_tir_ordi
+                    global voisin
                     global tir_ordi1
                     global tir_ordi2
                     
-                    if liste_IA[random_voisins_IA] != [ ]:
-                        if check_tir_IA_list(liste_IA[random_voisins_IA]) == False:
-                            tir_ordi1 = liste_IA[random_voisins_IA][0]
-                            tir_ordi2 = liste_IA[random_voisins_IA][1]
+                    for i in range(len(log_tir_ordi)):
+                        if ( log_tir_ordi[i][0] == voisin[0] ) and ( log_tir_ordi[i][1] == voisin[1] ):
+                            check_voisin_IA()
+                            break
                         else:
-                            reload_tir_IA()
-                            check_random_tir_IA()
-                    else:
-                        reload_tir_IA()
-                        check_random_tir_IA()
-                    
-                reload_tir_IA()        
-                check_random_tir_IA()
-                    
-                # if check_tir_IA(log_tir_ordi[-1][0] - 1 , log_tir_ordi[-1][1]) == False:
-                #     tir_ordi1 = log_tir_ordi[-1][0] - 1
-                #     tir_ordi2 = log_tir_ordi[-1][1]
-                #     pass
-                # else:
-                    
-                #     if check_tir_IA(log_tir_ordi[-1][0] + 1 , log_tir_ordi[-1][1]) == False:
-                #         tir_ordi1 = log_tir_ordi[-1][0] + 1
-                #         tir_ordi2 = log_tir_ordi[-1][1]
-                #         pass
-                #     else:
+                            tir_ordi1 = voisin[0]
+                            tir_ordi2 = voisin[1]
                 
-                #         if check_tir_IA(log_tir_ordi[-1][0], log_tir_ordi[-1][1] - 1) == False:
-                #             tir_ordi1 = log_tir_ordi[-1][0]
-                #             tir_ordi2 = log_tir_ordi[-1][1] - 1
-                #             pass
-                #         else:
-                            
-                #             if check_tir_IA(log_tir_ordi[-1][0], log_tir_ordi[-1][1] + 1) == False:
-                #                 tir_ordi1 = log_tir_ordi[-1][0]
-                #                 tir_ordi2 = log_tir_ordi[-1][1] + 1
-                #                 pass
-                
-                #             else:
-                #                 print("Neo, la Matrix")
-                
+                check_voisin_tir_IA()
+                check_IA = False
+            
+            tir_ordi1_backup = tir_ordi1
+            tir_ordi2_backup = tir_ordi2
+              
             center_tir_ordi1 = tir_ordi1*30+65
             center_tir_ordi2 = tir_ordi2*30+75
             
             #for ligne in case_joueur:
             #    print(ligne)
             
-            check_IA = False
             
             if case_joueur[tir_ordi2][tir_ordi1] == "S":
                 if check_tir_ordi_sm == False:
