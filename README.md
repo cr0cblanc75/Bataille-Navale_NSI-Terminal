@@ -13,6 +13,8 @@ Lancer le fichier du nom `Bataille Navale`
 - [ ] Corriger le `tir_ordi()`, qui gère l'IA qui joue contre nous
 - [X] Dans `tir_ordi()`générer de manière optimisé les voisins d'une case
 - [ ] Avoir de vraies graphismes de jeu ( fond d'écran )
+- [X] Première IA fonctionnelle
+- [ ] Corriger le bug de boucle sur la ligne 865 avec `check_voisin_IA( )` ( qui fait planter tout le jeu )
 
 <br>
 
