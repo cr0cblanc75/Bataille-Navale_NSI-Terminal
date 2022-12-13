@@ -1,17 +1,23 @@
-# Bataille-Navale_NSI-Terminal
-
-### Projet Solo 
-
-____________________
-
-Lancer le fichier du nom `Bataille Navale`
-
-> A faire : Corriger le `tir_ordi()`, qui gère l'IA qui joue contre nous
-
-
-##### Avoir au préalable la bibliothèque `PIL` et `TKinter` ( avec .ttk )
-
+# Bataille-Navale_NSI-Terminal ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 <br>
 
-```Objectif : Trophée de NSI```
+Lancer le fichier du nom `Bataille Navale`
+
+> Avoir au préalable la bibliothèque `PIL` et `TKinter` ( avec .ttk )
+
+<br>
+
+## A faire
+
+- [ ] Corriger le `tir_ordi()`, qui gère l'IA qui joue contre nous
+- [X] Dans `tir_ordi()`générer de manière optimisé les voisins d'une case
+- [ ] Avoir de vraies graphismes de jeu ( fond d'écran )
+
+<br>
+
+<br>
+
+```
+Objectif : Trophée de NSI
+```
