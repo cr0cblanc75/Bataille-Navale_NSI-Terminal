@@ -1,0 +1,156 @@
+[33mcommit 18c146187ff215c18fe83fadf125d34049b52f8f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Eugene L <crocblanc71@gmail.com>
+Date:   Tue Dec 13 23:13:14 2022 +0100
+
+    Mise à jour des BackUp
+
+[33mcommit 4047bc7418e9b3375e431e6f1b4eea75275a8b02[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 94a1a17 2783ace
+Author: Eugene L <crocblanc71@gmail.com>
+Date:   Tue Dec 13 23:05:35 2022 +0100
+
+    Merge branch 'main' of https://github.com/cr0cblanc75/Bataille-Navale_NSI-Terminal
+
+[33mcommit 94a1a17430863a8ba5f3178b56c83d13cbffc1e5[m
+Author: Eugene L <crocblanc71@gmail.com>
+Date:   Tue Dec 13 23:03:48 2022 +0100
+
+    Première IA fonctionnelle
+
+[33mcommit 2783acebb08a41648970700635e3510d48f47dc3[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Tue Dec 13 19:59:12 2022 +0100
+
+    Update README.md
+
+[33mcommit 14c906315d5aa9cac04b141bc43ce3314d8dda32[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Tue Dec 13 19:58:32 2022 +0100
+
+    Update README.md
+
+[33mcommit 5731ebbe5846ed5069d70a6c66b64616c7c26a29[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Tue Dec 13 19:57:46 2022 +0100
+
+    Update README.md
+
+[33mcommit 5a470a3c7479b5868020fd9e1d02d16bd29e6f91[m
+Author: Eugene L <crocblanc71@gmail.com>
+Date:   Mon Dec 12 23:24:50 2022 +0100
+
+    Debut du code de l'IA_ordi, boucle de tir à refaire
+
+[33mcommit 2a464c68305315d299ab89921c34d938c69adad4[m
+Author: Eugene L <crocblanc71@gmail.com>
+Date:   Tue Dec 6 21:11:10 2022 +0100
+
+    Correction des class (Bateau) mals assignées
+
+[33mcommit 2ecb4720492a7c56b8e706eff6be6aaf7d99d7b4[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Mon Dec 5 19:15:33 2022 +0100
+
+    Update README.md
+
+[33mcommit b21b64d42e293cf35816f032e63ac3f804571dd4[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Mon Dec 5 19:15:12 2022 +0100
+
+    Update README.md
+
+[33mcommit 71ba7ae6b3dc11ec91f3b4ccc5914111745c26e7[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Mon Dec 5 19:14:51 2022 +0100
+
+    Update README.md
+
+[33mcommit 73a6ad8e52adbabe788a40eef03bcee1f9372ddb[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:55:15 2022 +0100
+
+    Update Test_2(IA)_back-up.py
+
+[33mcommit e3abd6cb19a10fd285f93884ac2a41960bd0b46a[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:55:00 2022 +0100
+
+    Update Bataille_Navale- No_IA - back-up.py
+
+[33mcommit 0aaaf030b0522cb5103efdc6a06740eea8c77e3f[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:54:36 2022 +0100
+
+    Update Test_2 (IA).py
+
+[33mcommit a60f4bacd5fe5d8bc45434e9ca9766161e7ab919[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:54:07 2022 +0100
+
+    Update Bataille_Navale - No_IA.py
+
+[33mcommit e3ed0aebe18fd4c54fc309bde56a0704ff2a5579[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:53:33 2022 +0100
+
+    Update README.md
+
+[33mcommit ff05e99f5d7a5c585a9cc9e4597e7d169a0dbff0[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:51:55 2022 +0100
+
+    Update README.md
+
+[33mcommit 8178147e92879cba1749cc6191e281fb9869e7c4[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 13:51:19 2022 +0100
+
+    Update README.md
+
+[33mcommit 823ceb5c97e916e43d4269d40f6b538bcd322387[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:53:21 2022 +0100
+
+    Update README.md
+
+[33mcommit 50666cd2379a954fbd023bc61565121e705fe895[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:52:02 2022 +0100
+
+    Update Test_2(IA)_back-up.py
+
+[33mcommit 24cf88147d5de4c8ecb57777cc58e5391c8847d6[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:51:31 2022 +0100
+
+    Update Bataille_Navale- No_IA - back-up.py
+
+[33mcommit 72f41d66322a6441f700dc0e75452f3a532780bd[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:50:42 2022 +0100
+
+    Update Bataille_Navale - No_IA.py
+
+[33mcommit a0b2443403839528c5370b4ea16f7fd6cf5f07ed[m
+Author: Eugene L <crocblanc71@gmail.com>
+Date:   Sun Dec 4 01:44:47 2022 +0100
+
+    Triage Fichiers v.1.0
+
+[33mcommit b7e8e277c9aebc2d96e8cf0101047b9f12300aaa[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:34:34 2022 +0100
+
+    Add files via upload
+
+[33mcommit 2e562f8faee3c1c6611f6c3dab9caf10f0c1b6ca[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:24:46 2022 +0100
+
+    Update README.md
+
+[33mcommit ca8ffc27109edb9c0d35a8ced1d95f93b1474a5d[m
+Author: Eugene L <112854716+cr0cblanc75@users.noreply.github.com>
+Date:   Sun Dec 4 01:22:30 2022 +0100
+
+    Initial commit
