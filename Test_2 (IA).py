@@ -838,7 +838,16 @@ def main():
             if check_IA == True:
                 liste_voisins_IA = voisins_IA()
                 #print(liste_voisins_IA)
+                #print(len(liste_voisins_IA))
                 
+                for j in range(len(liste_voisins_IA)):
+                    for i in range(len(log_tir_ordi)):
+                        if liste_voisins_IA[j] == [ ]:
+                            break
+                        if ( log_tir_ordi[i][0] == liste_voisins_IA[j][0] ) and ( log_tir_ordi[i][1] == liste_voisins_IA[j][1] ):
+                            liste_voisins_IA[j] = [ ]
+                
+                #print(liste_voisins_IA)
                 
                 def random_voisin_IA():
                     global random_voisins_IA
@@ -858,23 +867,27 @@ def main():
                         voisin = liste_voisins_IA[random_voisins_IA]
                 
                 check_voisin_IA()         
-                print(voisin)
+                #print(voisin)
                 
-                def check_voisin_tir_IA():
-                    global log_tir_ordi
-                    global voisin
-                    global tir_ordi1
-                    global tir_ordi2
+                tir_ordi1 = voisin[0]
+                tir_ordi2 = voisin[1]
+                
+                # def check_voisin_tir_IA():
+                #     global log_tir_ordi
+                #     global voisin
+                #     global tir_ordi1
+                #     global tir_ordi2
                     
-                    for i in range(len(log_tir_ordi)):
-                        if ( log_tir_ordi[i][0] == voisin[0] ) and ( log_tir_ordi[i][1] == voisin[1] ):
-                            check_voisin_IA()
-                            break
-                        else:
-                            tir_ordi1 = voisin[0]
-                            tir_ordi2 = voisin[1]
+                #     for i in range(len(log_tir_ordi)):
+                #         if ( log_tir_ordi[i][0] == voisin[0] ) and ( log_tir_ordi[i][1] == voisin[1] ):
+                #             check_voisin_IA()
+                #             break
+                #         else:
+                #             tir_ordi1 = voisin[0]
+                #             tir_ordi2 = voisin[1]
                 
-                check_voisin_tir_IA()
+                # check_voisin_tir_IA()
+                
                 check_IA = False
             
             tir_ordi1_backup = tir_ordi1
