@@ -1,17 +1,22 @@
 # Bataille-Navale_NSI-Terminal
 
-### Projet Solo 
-
-____________________
+<br>
 
 Lancer le fichier du nom `Bataille Navale`
 
-> A faire : Corriger le `tir_ordi()`, qui gère l'IA qui joue contre nous
-
-
-##### Avoir au préalable la bibliothèque `PIL` et `TKinter` ( avec .ttk )
-
+> Avoir au préalable la bibliothèque `PIL` et `TKinter` ( avec .ttk )
 
 <br>
 
-```Objectif : Trophée de NSI```
+## A faire
+
+- [ ] Corriger le `tir_ordi()`, qui gère l'IA qui joue contre nous
+- [X] Dans `tir_ordi()`générer de manière optimisé les voisins d'une case
+
+<br>
+
+<br>
+
+```
+Objectif : Trophée de NSI
+```
