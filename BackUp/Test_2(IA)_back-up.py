@@ -66,6 +66,18 @@ check_tir_ordi_fg = False
 check_tir_ordi_pa = False
 check_tir_ordi_tp = False
 
+tir_ordi1 = randint(0,7)
+tir_ordi2 = randint(0,7)
+
+random_voisins_IA = randint(0, 3)
+voisin = []
+
+tir_ordi1_backup = tir_ordi1
+tir_ordi2_backup = tir_ordi2
+
+check_tir_ordi = True
+
+
 #-----------------------------
 
 start_game = 4
@@ -101,6 +113,13 @@ def main():
     global check_tir_ordi_pa
     global check_tir_ordi_tp
     global check_IA
+    global random_voisins_IA
+    global voisin
+    global tir_ordi1
+    global tir_ordi2
+    global tir_ordi1_backup
+    global tir_ordi2_backup
+    global check_tir_ordi
     
     global check_tir_bateau
     global check_pos
@@ -150,7 +169,11 @@ def main():
     
     log_tir_ordi = []
     
-    check_IA = False 
+    check_IA = False
+    random_voisins_IA = randint(0, 3)
+    voisin = []
+        
+    check_tir_ordi = True
     
     #-----------------------------
 
@@ -472,13 +495,13 @@ def main():
             pos.append(pos_x)
             pos.append(pos_y)
             if x<50 or x>290 or y<60 or y>300:
-                print("Hors de la grille")
+                #print("Hors de la grille")
                 pos = []
             try:
                 if pos[2]<0 or pos[3]<0:
-                    print("Valeurs Négatives")
+                    #print("Valeurs Négatives")
                     pos = []
-                    print("Retry in the grid: ",pos)
+                    #print("Retry in the grid: ",pos)
                     #print(pos_prec)
             except:
                 pass
@@ -499,13 +522,13 @@ def main():
             pos.append(pos_y)
             #print(pos)
             if x<50 or x>290 or y<60 or y>300:
-                print("Hors de la grille")
+                #print("Hors de la grille")
                 pos = pos_prec
             try:
                 if pos[2]<0 or pos[3]<0:
-                    print("Valeurs Négatives")
+                    #print("Valeurs Négatives")
                     pos = pos_prec
-                    print("Retry in the grid: ",pos)
+                    #print("Retry in the grid: ",pos)
                     #print(pos_prec)
                 else:
                     pos_prec = pos
@@ -537,6 +560,7 @@ def main():
         global check_tir_tp
         global check_tir_fg
         global end_game
+        global loose
         
         global check_tir_bateau
         
@@ -544,6 +568,9 @@ def main():
         
         if end_game == -12:
             dessin.create_text(130, 420, font=('Centaur', 50, "bold"), text='Win', fill ="red")
+            pass
+        elif loose == -12:
+            dessin.create_text(130, 420, font=('Centaur', 50, "bold"), text='Loose', fill ="red")
             pass
         else:
             if start_game == 0:      
@@ -723,7 +750,7 @@ def main():
         
         
         
-    def tir_ordi(): #debug, loosable, croix noir, IA
+    def tir_ordi(): #debug, loosable, IA
         
         global case_joueur
         global loose
@@ -737,138 +764,218 @@ def main():
         global check_tir_ordi_pa
         global check_tir_ordi_tp
         global check_IA
+        global random_voisins_IA
+        global voisin
+        global tir_ordi1
+        global tir_ordi2
         
-        tir_ordi1 = randint(0,7)
-        tir_ordi2 = randint(0,7)
+        # tir_ordi1 = randint(0,7)
+        # tir_ordi2 = randint(0,7)
         
-        #print("----- tir -----")
-        #print(tir_ordi1)
-        #print(tir_ordi2)
-
-        save = []
         
-        check_tir_ordi = True
-        
-        #print(check_IA)
-        
-        if log_tir_ordi == []:
+        if loose == -12:
+            dessin.create_text(130, 420, font=('Centaur', 50, "bold"), text='Loose', fill ="red")
             pass
         else:
-            while check_tir_ordi == True:
+            def reload_tir():
+                global tir_ordi1
+                global tir_ordi2
+                
+                tir_ordi1 = randint(0,7)
+                tir_ordi2 = randint(0,7)
+            
+            reload_tir()  
+            
+            #print("----- tir -----")
+            #print(tir_ordi1)
+            #print(tir_ordi2)
+
+            save = []
+            
+            check_tir_ordi = True
+            
+            #print(check_IA)
+            
+            def check_ante_tir_ordi():
+                global check_tir_ordi
+                global log_tir_ordi
+                global tir_ordi1
+                global tir_ordi2
+                
+                #print("----- log -------")
+                #print(log_tir_ordi)
+                #print(tir_ordi1)
+                #print(tir_ordi2)
+                
                 for i in range(len(log_tir_ordi)):
                     if ( log_tir_ordi[i][0] == tir_ordi1 ) and ( log_tir_ordi[i][1] == tir_ordi2 ):
-                        tir_ordi1 = randint(0,7)
-                        tir_ordi2 = randint(0,7)
-                        check_tir_ordi = True
-                        
-                        #print("----- log -------")
-                        #print(log_tir_ordi)
-                        #print(tir_ordi1)
-                        #print(tir_ordi2)
-                        
+                        reload_tir()
+                        check_ante_tir_ordi()
                         break
                     else:
-                        check_tir_ordi = False
-            
-        if check_IA == True:
-            print(log_tir_ordi[-1])
-            
-            rota_IA = randint(0,1)
-            print(rota_IA)
-            if rota_IA == 0:
-                if log_tir_ordi[-1][0] != 0 :
-                    tir_ordi2 = log_tir_ordi[-1][0] - 1
+                        pass
                     
-                else:
-                    tir_ordi2 = log_tir_ordi[-1][0] + 1
+            if log_tir_ordi == []:
+                pass
+            else:
+               check_ante_tir_ordi()
             
-            if rota_IA == 1:
-                if log_tir_ordi[-1][1] != 0 :
-                    tir_ordi1 = log_tir_ordi[-1][1] - 1
-                    
-                else:
-                    tir_ordi1 = log_tir_ordi[-1][1] + 1
-            print(tir_ordi1)
-            print(tir_ordi2)
-            check_IA = False
             
-        center_tir_ordi1 = tir_ordi1*30+65
-        center_tir_ordi2 = tir_ordi2*30+75
-        
-        if case_joueur[tir_ordi2][tir_ordi1] == "S":
-            if check_tir_ordi_sm == False:
+            def voisins_IA():
+                global log_tir_ordi
                 
-                dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
-                dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
+                liste_voisins_IA = [[log_tir_ordi[-1][0] + 1, log_tir_ordi[-1][1]], [log_tir_ordi[-1][0], log_tir_ordi[-1][1] - 1], [log_tir_ordi[-1][0] - 1, log_tir_ordi[-1][1]], [log_tir_ordi[-1][0], log_tir_ordi[-1][1] + 1]]
+                
+                for i in range(len(liste_voisins_IA)):
+                    if (liste_voisins_IA[i][0] < 0) or (liste_voisins_IA[i][1] < 0) or (liste_voisins_IA[i][0] > 7) or (liste_voisins_IA[i][1] > 7):
+                        liste_voisins_IA[i] = [ ]
+                return liste_voisins_IA
             
-                save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
-                log_tir_ordi_sm.append(save)
-                log_tir_ordi.append(save)
-                check_IA = True
+            #print("-----", voisins_IA())
             
-            if len(log_tir_ordi_sm) >= 3:
-                for i in range(3):
-                    dessin.create_line(log_tir_ordi_sm[i][2] - 15, log_tir_ordi_sm[i][3] + 15, log_tir_ordi_sm[i][2] + 15, log_tir_ordi_sm[i][3] - 15, fill = "black", width = 2 )
-                    dessin.create_line(log_tir_ordi_sm[i][2] + 15, log_tir_ordi_sm[i][3] + 15, log_tir_ordi_sm[i][2] - 15, log_tir_ordi_sm[i][3] - 15, fill = "black", width = 2 )
-                    check_tir_ordi_sm = True
-                    loose = loose - 1
-
-        elif case_joueur[tir_ordi2][tir_ordi1] == "F":
-            if check_tir_ordi_fg == False:
-                dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
-                dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
             
-                save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
-                log_tir_ordi_fg.append(save)
-                log_tir_ordi.append(save)
-                check_IA = True
             
-            if len(log_tir_ordi_fg) >= 3:
-                for i in range(3):
-                    dessin.create_line(log_tir_ordi_fg[i][2] - 15, log_tir_ordi_fg[i][3] + 15, log_tir_ordi_fg[i][2] + 15, log_tir_ordi_fg[i][3] - 15, fill = "black", width = 2 )
-                    dessin.create_line(log_tir_ordi_fg[i][2] + 15, log_tir_ordi_fg[i][3] + 15, log_tir_ordi_fg[i][2] - 15, log_tir_ordi_fg[i][3] - 15, fill = "black", width = 2 )
-                    check_tir_ordi_fg = True
-                    loose = loose - 1
+            if check_IA == True:
+                liste_voisins_IA = voisins_IA()
+                #print(liste_voisins_IA)
+                #print(len(liste_voisins_IA))
+                
+                for j in range(len(liste_voisins_IA)):
+                    for i in range(len(log_tir_ordi)):
+                        if liste_voisins_IA[j] == [ ]:
+                            break
+                        if ( log_tir_ordi[i][0] == liste_voisins_IA[j][0] ) and ( log_tir_ordi[i][1] == liste_voisins_IA[j][1] ):
+                            liste_voisins_IA[j] = [ ]
+                
+                #print(liste_voisins_IA)
+                
+                def random_voisin_IA():
+                    global random_voisins_IA
                     
-        elif case_joueur[tir_ordi2][tir_ordi1] == "P":
-            if check_tir_ordi_pa == False:
-                dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
-                dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
+                    random_voisins_IA = randint(0, 3)
+                    #print(random_voisins_IA)
+                
+                random_voisin_IA()
+                
+                def check_voisin_IA():
+                    global voisin
+                    
+                    if liste_voisins_IA[random_voisins_IA] == [ ]:
+                        random_voisin_IA()
+                        check_voisin_IA()
+                    else: 
+                        voisin = liste_voisins_IA[random_voisins_IA]
+                
+                check_voisin_IA()         
+                #print(voisin)
+                
+                tir_ordi1 = voisin[0]
+                tir_ordi2 = voisin[1]
+                
+                # def check_voisin_tir_IA():
+                #     global log_tir_ordi
+                #     global voisin
+                #     global tir_ordi1
+                #     global tir_ordi2
+                    
+                #     for i in range(len(log_tir_ordi)):
+                #         if ( log_tir_ordi[i][0] == voisin[0] ) and ( log_tir_ordi[i][1] == voisin[1] ):
+                #             check_voisin_IA()
+                #             break
+                #         else:
+                #             tir_ordi1 = voisin[0]
+                #             tir_ordi2 = voisin[1]
+                
+                # check_voisin_tir_IA()
+                
+                check_IA = False
             
+            tir_ordi1_backup = tir_ordi1
+            tir_ordi2_backup = tir_ordi2
+              
+            center_tir_ordi1 = tir_ordi1*30+65
+            center_tir_ordi2 = tir_ordi2*30+75
+            
+            #for ligne in case_joueur:
+            #    print(ligne)
+            
+            
+            if case_joueur[tir_ordi2][tir_ordi1] == "S":
+                if check_tir_ordi_sm == False:
+                    
+                    dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
+                    dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
+                
+                    save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
+                    log_tir_ordi_sm.append(save)
+                    log_tir_ordi.append(save)
+                    check_IA = True
+                
+                if len(log_tir_ordi_sm) >= 3:
+                    for i in range(3):
+                        dessin.create_line(log_tir_ordi_sm[i][2] - 15, log_tir_ordi_sm[i][3] + 15, log_tir_ordi_sm[i][2] + 15, log_tir_ordi_sm[i][3] - 15, fill = "black", width = 2 )
+                        dessin.create_line(log_tir_ordi_sm[i][2] + 15, log_tir_ordi_sm[i][3] + 15, log_tir_ordi_sm[i][2] - 15, log_tir_ordi_sm[i][3] - 15, fill = "black", width = 2 )
+                        check_tir_ordi_sm = True
+                        loose = loose - 1
+
+            elif case_joueur[tir_ordi2][tir_ordi1] == "F":
+                if check_tir_ordi_fg == False:
+                    dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
+                    dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
+                
+                    save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
+                    log_tir_ordi_fg.append(save)
+                    log_tir_ordi.append(save)
+                    check_IA = True
+                
+                if len(log_tir_ordi_fg) >= 3:
+                    for i in range(3):
+                        dessin.create_line(log_tir_ordi_fg[i][2] - 15, log_tir_ordi_fg[i][3] + 15, log_tir_ordi_fg[i][2] + 15, log_tir_ordi_fg[i][3] - 15, fill = "black", width = 2 )
+                        dessin.create_line(log_tir_ordi_fg[i][2] + 15, log_tir_ordi_fg[i][3] + 15, log_tir_ordi_fg[i][2] - 15, log_tir_ordi_fg[i][3] - 15, fill = "black", width = 2 )
+                        check_tir_ordi_fg = True
+                        loose = loose - 1
+                        
+            elif case_joueur[tir_ordi2][tir_ordi1] == "P":
+                if check_tir_ordi_pa == False:
+                    dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
+                    dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
+                
+                    save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
+                    log_tir_ordi_pa.append(save)
+                    log_tir_ordi.append(save)
+                    check_IA = True
+                
+                if len(log_tir_ordi_pa) >= 8:
+                    for i in range(8):
+                        dessin.create_line(log_tir_ordi_pa[i][2] - 15, log_tir_ordi_pa[i][3] + 15, log_tir_ordi_pa[i][2] + 15, log_tir_ordi_pa[i][3] - 15, fill = "black", width = 2 )
+                        dessin.create_line(log_tir_ordi_pa[i][2] + 15, log_tir_ordi_pa[i][3] + 15, log_tir_ordi_pa[i][2] - 15, log_tir_ordi_pa[i][3] - 15, fill = "black", width = 2 )
+                        check_tir_ordi_pa = True
+                        loose = loose - 1
+                
+            elif case_joueur[tir_ordi2][tir_ordi1] == "T":
+                if check_tir_ordi_tp == False:
+                    dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
+                    dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
+                
+                    save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
+                    log_tir_ordi_tp.append(save)
+                    log_tir_ordi.append(save)
+                    check_IA = True
+                
+                if len(log_tir_ordi_tp) >= 2:
+                    for i in range(2):
+                        dessin.create_line(log_tir_ordi_tp[i][2] - 15, log_tir_ordi_tp[i][3] + 15, log_tir_ordi_tp[i][2] + 15, log_tir_ordi_tp[i][3] - 15, fill = "black", width = 2 )
+                        dessin.create_line(log_tir_ordi_tp[i][2] + 15, log_tir_ordi_tp[i][3] + 15, log_tir_ordi_tp[i][2] - 15, log_tir_ordi_tp[i][3] - 15, fill = "black", width = 2 )
+                        check_tir_ordi_tp = True
+                        loose = loose - 1
+                
+            else:
+                dessin.create_arc((center_tir_ordi1-15, center_tir_ordi2-15),(center_tir_ordi1+15, center_tir_ordi2+15),start=0, extent=180, style=ARC, outline = "blue")
+                dessin.create_arc((center_tir_ordi1-15, center_tir_ordi2-15),(center_tir_ordi1+15, center_tir_ordi2+15),start=180, extent=180, style=ARC, outline = "blue")
                 save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
-                log_tir_ordi_pa.append(save)
                 log_tir_ordi.append(save)
-                check_IA = True
             
-            if len(log_tir_ordi_pa) >= 8:
-                for i in range(8):
-                    dessin.create_line(log_tir_ordi_pa[i][2] - 15, log_tir_ordi_pa[i][3] + 15, log_tir_ordi_pa[i][2] + 15, log_tir_ordi_pa[i][3] - 15, fill = "black", width = 2 )
-                    dessin.create_line(log_tir_ordi_pa[i][2] + 15, log_tir_ordi_pa[i][3] + 15, log_tir_ordi_pa[i][2] - 15, log_tir_ordi_pa[i][3] - 15, fill = "black", width = 2 )
-                    check_tir_ordi_pa = True
-                    loose = loose - 1
             
-        elif case_joueur[tir_ordi2][tir_ordi1] == "T":
-            if check_tir_ordi_tp == False:
-                dessin.create_line(center_tir_ordi1 - 15, center_tir_ordi2 + 15, center_tir_ordi1 + 15, center_tir_ordi2 - 15, fill = "red" )
-                dessin.create_line(center_tir_ordi1 + 15, center_tir_ordi2 + 15, center_tir_ordi1 - 15, center_tir_ordi2 - 15, fill = "red" )
-            
-                save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
-                log_tir_ordi_tp.append(save)
-                log_tir_ordi.append(save)
-                check_IA = True
-            
-            if len(log_tir_ordi_tp) >= 2:
-                for i in range(2):
-                    dessin.create_line(log_tir_ordi_tp[i][2] - 15, log_tir_ordi_tp[i][3] + 15, log_tir_ordi_tp[i][2] + 15, log_tir_ordi_tp[i][3] - 15, fill = "black", width = 2 )
-                    dessin.create_line(log_tir_ordi_tp[i][2] + 15, log_tir_ordi_tp[i][3] + 15, log_tir_ordi_tp[i][2] - 15, log_tir_ordi_tp[i][3] - 15, fill = "black", width = 2 )
-                    check_tir_ordi_tp = True
-                    loose = loose - 1
-            
-        else:
-            dessin.create_arc((center_tir_ordi1-15, center_tir_ordi2-15),(center_tir_ordi1+15, center_tir_ordi2+15),start=0, extent=180, style=ARC, outline = "blue")
-            dessin.create_arc((center_tir_ordi1-15, center_tir_ordi2-15),(center_tir_ordi1+15, center_tir_ordi2+15),start=180, extent=180, style=ARC, outline = "blue")
-            save = [tir_ordi1, tir_ordi2, center_tir_ordi1, center_tir_ordi2]
-            log_tir_ordi.append(save)
             
 #------------------------------------------------------------------------------#
 #------------------------------------------------------------------------------#
@@ -1238,10 +1345,10 @@ def main():
                                 check_pos = False
                                 print("enter")
                                 
-                            print(case_joueur[pos[3]][pos[2]-1])
-                            print(case_joueur[pos[3]][pos[2]])
-                            print(case_joueur[pos[3]][pos[2]+1])
-                            print(check_pos)
+                            #print(case_joueur[pos[3]][pos[2]-1])
+                            #print(case_joueur[pos[3]][pos[2]])
+                            #print(case_joueur[pos[3]][pos[2]+1])
+                            #print(check_pos)
 
                             if check_pos == True:
                                 dessin.create_arc((pos[4]-120, pos[5]-10),(pos[4]+40,  pos[5]+10), start=0, extent=90, style=ARC, outline ='#0000FF')
@@ -1664,6 +1771,13 @@ def regle():
 ##----- Programme principal - Mise en fonction -----##
 
 menu()
+
+
+#Temps passé sur le code en 45-Tours ( 4 min ) : 1022 
+#Temps passé sur le code en heures : 68
+
+
+
 
 
 
